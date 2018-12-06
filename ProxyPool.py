@@ -9,9 +9,10 @@ import gevent
 
 TEST_URL = 'https://www.baidu.com'
 
+
 client = MongoClient("localhost",27017)
 db = client.proxies
-collection = db['proxy_port']
+collection = db['Proxy_Port']
 
 def parse_url(url):
     headers = [
@@ -22,6 +23,7 @@ def parse_url(url):
         {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0'},
         {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/44.0.2403.89 Chrome/44.0.2403.89 Safari/537.36'}
     ]
+
     try:
         response = requests.get(url,headers=random.choice(headers))
         if response.status_code == 200:
@@ -35,6 +37,8 @@ def proxy_xici():
     doc = pq(response)
 
     total_page = doc.find('.pagination a').eq(-2).text()
+    total_page=5
+    proxies = []
     for page in range(1,int(total_page)+1):
         url = 'http://www.xicidaili.com/nn/{}'.format(page)
         doc = pq(parse_url(url))
@@ -49,7 +53,8 @@ def proxy_xici():
                 'ip':ip,
                 'port':port
             }
-            yield proxy
+            proxies.append(proxy)
+    return proxies
 
 def proxy_test(proxy):
     try:
@@ -63,9 +68,8 @@ def proxy_test(proxy):
         pass
 
 
-items = proxy_xici()
+proxies = proxy_xici()
 pool = ThreadPool(20)
-threads = [pool.spawn(proxy_test, each) for each in items]
+threads = [pool.spawn(proxy_test, each) for each in proxies]
 gevent.joinall(threads)
-
 
