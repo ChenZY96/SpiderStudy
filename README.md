@@ -13,3 +13,8 @@
 该实验的主要目的是爬取QQ空间的说说，并进行分词制作词云图。
 
 具体说明可以看[爬取空间说说并制作词云图](https://chenzy96.github.io/2018/12/02/%E7%88%AC%E5%8F%96%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E5%B9%B6%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE/)
+
+## ProxyPool.py
+该实验的主要目的是爬取一些可用的高匿代理存入数据库，搭建一个代理池方便使用爬虫
+
+具体说明可以看[python爬虫之搭建代理池](https://chenzy96.github.io/2018/12/04/python%E7%88%AC%E8%99%AB%E4%B9%8B%E6%90%AD%E5%BB%BA%E4%BB%A3%E7%90%86%E6%B1%A0/)
