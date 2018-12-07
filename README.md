@@ -18,3 +18,6 @@
 该实验的主要目的是爬取一些可用的高匿代理存入数据库，搭建一个代理池方便使用爬虫
 
 具体说明可以看[python爬虫之搭建代理池](https://chenzy96.github.io/2018/12/04/python%E7%88%AC%E8%99%AB%E4%B9%8B%E6%90%AD%E5%BB%BA%E4%BB%A3%E7%90%86%E6%B1%A0/)
+
+## WeChat1.py
+具体说明可以看[基于关键词爬取微信公众号文章](https://chenzy96.github.io/2018/12/04/%E5%9F%BA%E4%BA%8E%E5%85%B3%E9%94%AE%E8%AF%8D%E7%88%AC%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/)
