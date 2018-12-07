@@ -4,8 +4,8 @@ import random
 import os
 import sys
 #url = 'https://mp.weixin.qq.com/s/QAwrisNuu1dThFbs__wF_Q'
-url = 'https://mp.weixin.qq.com/s/WBBGOT_GGliFAdiLMQSEGg'
-#url = sys.argv[1]
+#url = 'https://mp.weixin.qq.com/s/WBBGOT_GGliFAdiLMQSEGg'
+url = sys.argv[1]
 
 def download_pic(title,url):
     print(url)
