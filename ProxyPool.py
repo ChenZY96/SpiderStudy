@@ -37,7 +37,7 @@ def proxy_xici():
     doc = pq(response)
 
     total_page = doc.find('.pagination a').eq(-2).text()
-    total_page=5
+    #total_page=5
     proxies = []
     for page in range(1,int(total_page)+1):
         url = 'http://www.xicidaili.com/nn/{}'.format(page)
