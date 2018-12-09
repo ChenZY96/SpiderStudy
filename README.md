@@ -20,4 +20,9 @@
 具体说明可以看[python爬虫之搭建代理池](https://chenzy96.github.io/2018/12/04/python%E7%88%AC%E8%99%AB%E4%B9%8B%E6%90%AD%E5%BB%BA%E4%BB%A3%E7%90%86%E6%B1%A0/)
 
 ## WeChat1.py
+该实验的主要目的是利用关键词搜索相关的微信公众号文章标题、公众号、链接等内容并保存到本地
 具体说明可以看[基于关键词爬取微信公众号文章](https://chenzy96.github.io/2018/12/04/%E5%9F%BA%E4%BA%8E%E5%85%B3%E9%94%AE%E8%AF%8D%E7%88%AC%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/)
+
+## WeChat2.py
+该实验的主要目的是爬取微信公众号文章正文内容并保存到本地
+具体说明可以看[微信公众号文章爬取实战](https://chenzy96.github.io/2018/12/07/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E7%88%AC%E5%8F%96%E5%AE%9E%E6%88%98/)
