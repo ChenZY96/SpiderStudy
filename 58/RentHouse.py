@@ -52,7 +52,7 @@ headers = [
 
 url  = 'https://bj.58.com/haidian/pinpaigongyu/pn/{0}/?minprice=2000_3000'
 page = 0
-#proxy = '140.143.156.166:1080'
+
 file_dir = "{0}".format(os.getcwd())
 path = os.path.join(file_dir,"BJ_haidian_2000_3000.csv")
 columns = ['name','location','price','url']
@@ -63,14 +63,11 @@ while True:
 
     if resp:
         base64_str = re.findall('data:application/font-ttf;charset=utf-8;base64,(.*?)\'\) format\(\'truetype\'\)}',resp.text)
-        #print(base64_str)
         bin_data = base64.b64decode(base64_str[0])
         fonts = TTFont(io.BytesIO(bin_data))
         bestcmap = fonts.getBestCmap()
         newmap = {}
         for key in bestcmap.keys():
-            #print(key)
-            #print(re.findall(r'(\d+)', bestcmap[key]))
             value = int(re.findall(r'(\d+)', bestcmap[key])[0]) - 1
             key = hex(key)
             newmap[key] = value
@@ -97,10 +94,7 @@ while True:
         house_price = getrealValue(newmap,str(house_price))
 
         #house_location = re.findall('\s+(.*?)\s+',house_name)
-        #print(house_name)
         house = re.findall('】(.*?)\s+(.*?)\s+', house_name)
-        #print(house)
-        # 如果第一列是公寓名 则取第二列作为地址
         if not house:
             house_location == 'Unknow'
         else:
@@ -117,9 +111,6 @@ while True:
             'url':house_url
         }
         house_data.append(house_info)
-        #print(house_info)
-        #house_data.append(house_info)
-        #csv_writer.writerow([house_name, house_location, house_price, house_url])
     print('page {0} has done'.format(page))
     if page != 1 and doc.find('.page a').eq(-2).text() != '下一页':
         print('All done')
