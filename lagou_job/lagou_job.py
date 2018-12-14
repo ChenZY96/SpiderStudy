@@ -6,9 +6,23 @@ import math
 from fake_useragent import UserAgent
 import time
 
+import random
 import sys
+
+
 # city = sys.argv[1]
 # position = sys.argv[2]
+
+# 运行本代码前，先去获得自己的登录cookie，以及x-anti-forge-code和x-anti-forge-token的值
+
+# 获取x-anti-forge-code和x-anti-forge-token的值
+
+# r1 = requests.get('https://passport.lagou.com/login/login.html',headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',},)
+# X_Anti_Forge_Token = re.findall("X_Anti_Forge_Token = '(.*?)'", r1.text, re.S)[0]
+# X_Anti_Forge_Code = re.findall("X_Anti_Forge_Code = '(.*?)'", r1.text, re.S)[0]
+# print(X_Anti_Forge_Token,X_Anti_Forge_Code)
+
+
 
 def get_json_data(city,position,page):
     url ='https://www.lagou.com/jobs/positionAjax.json?px=default&city={0}&needAddtionalResult=false'.format(city)
@@ -18,10 +32,10 @@ def get_json_data(city,position,page):
         'kd': position,
     }
 
-    cookie = 'write your cookie here'
+    cookie = 'please write your cookie here'
     headers = {'cookie': cookie,
                'origin': "https://www.lagou.com",
-               'x-anit-forge-code': "0",
+               'x-anit-forge-code': "96133506",
                'accept-encoding': "gzip, deflate, br",
                'accept-language': "zh-CN,zh;q=0.8,",
                'user-agent': UserAgent().random,
@@ -30,15 +44,10 @@ def get_json_data(city,position,page):
                'referer': "https://www.lagou.com/jobs/list_Pyhon?labelWords=&fromSearch=true&suginput=",
                'x-requested-with': "XMLHttpRequest",
                'connection': "keep-alive",
-               'x-anit-forge-token': "None"}
-    #
-    # headers = {
-    #     'Host': 'www.lagou.com',
-    #     'Referer': 'https://www.lagou.com/',
-    #     'User-Agent':'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0',
-    #     'Cookie':'JSESSIONID=ABAAABAAAFCAAEGB66B21895547EE55CA0FC5785C29C800; _ga=GA1.2.1744928834.1544610941; _gid=GA1.2.1570864122.1544610941; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1544610942; user_trace_token=20181212183541-ac8f0f2a-fdf9-11e8-9076-525400f775ce; LGUID=20181212183541-ac8f1238-fdf9-11e8-9076-525400f775ce; X_HTTP_TOKEN=d816c5284c6a234f5b7b2eab0638602a; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22167a26887636aa-01485791dabfb8-163c6656-2073600-167a2688764a89%22%2C%22%24device_id%22%3A%22167a26887636aa-01485791dabfb8-163c6656-2073600-167a2688764a89%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%7D; ab_test_random_num=0; _putrc=490C4FE94B966151123F89F2B170EADC; login=true; unick=%E6%8B%89%E5%8B%BE%E7%94%A8%E6%88%B79509; hasDeliver=0; TG-TRACK-CODE=index_navigation; index_location_city=%E5%8C%97%E4%BA%AC; _gat=1; LGSID=20181213192312-7a02e77e-fec9-11e8-8cef-5254005c3644; PRE_UTM=; PRE_HOST=; PRE_SITE=; PRE_LAND=https%3A%2F%2Fwww.lagou.com%2Fjobs%2Flist_Python%3Fpx%3Ddefault%26city%3D%25E5%258C%2597%25E4%25BA%25AC; showExpriedIndex=1; showExpriedCompanyHome=1; showExpriedMyPublish=1; gate_login_token=9eb8593b295cd0c99740e54d1e59982df4c5198bb3e465d8e0719b70a0dfeca3; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1544700197; LGRID=20181213192316-7caffdc3-fec9-11e8-8cef-5254005c3644; SEARCH_ID=251c694967ec49838a2afdbebe0fb7f7'
-    # }
+               'x-anit-forge-token': "e3336034-825a-4a43-8bd3-98443eaa9378"}
+
     response = requests.post(url,headers=headers,data=datas)
+    print(response.json())
     return response.json()
 
 def totalPage(city,position):
@@ -109,6 +118,7 @@ def main(city,position):
 
     total_page = totalPage(city,position)
     print('total_page:{}'.format(total_page))
+    time.sleep(10)
     job_list = []
     for page in range(1,total_page+1):
         page_json = get_json_data(city,position,page)
