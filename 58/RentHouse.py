@@ -63,14 +63,11 @@ while True:
 
     if resp:
         base64_str = re.findall('data:application/font-ttf;charset=utf-8;base64,(.*?)\'\) format\(\'truetype\'\)}',resp.text)
-        #print(base64_str)
         bin_data = base64.b64decode(base64_str[0])
         fonts = TTFont(io.BytesIO(bin_data))
         bestcmap = fonts.getBestCmap()
         newmap = {}
         for key in bestcmap.keys():
-            #print(key)
-            #print(re.findall(r'(\d+)', bestcmap[key]))
             value = int(re.findall(r'(\d+)', bestcmap[key])[0]) - 1
             key = hex(key)
             newmap[key] = value
@@ -97,7 +94,10 @@ while True:
 
         #house_location = re.findall('\s+(.*?)\s+',house_name)
         house = re.findall('】(.*?)\s+(.*?)\s+', house_name)
+<<<<<<< HEAD
 
+=======
+>>>>>>> b31fdb4c793ee1dd8430f67334ae7f94d513b8b7
         if not house:
             house_location == 'Unknow'
         else:
