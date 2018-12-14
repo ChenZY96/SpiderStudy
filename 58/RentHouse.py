@@ -52,7 +52,7 @@ headers = [
 
 url  = 'https://bj.58.com/haidian/pinpaigongyu/pn/{0}/?minprice=2000_3000'
 page = 0
-#proxy = '140.143.156.166:1080'
+
 file_dir = "{0}".format(os.getcwd())
 path = os.path.join(file_dir,"BJ_haidian_2000_3000.csv")
 columns = ['name','location','price','url']
@@ -84,7 +84,6 @@ while True:
         break
     #print(doc.find('.page a').eq(-2).text())
     for each in house_list.items():
-        #print(each)
         house_url = each.find('a').eq(0).attr('href')
 
         house_name = each.find('.des.strongbox h2').text()
@@ -97,10 +96,8 @@ while True:
         house_price = getrealValue(newmap,str(house_price))
 
         #house_location = re.findall('\s+(.*?)\s+',house_name)
-        #print(house_name)
         house = re.findall('】(.*?)\s+(.*?)\s+', house_name)
-        #print(house)
-        # 如果第一列是公寓名 则取第二列作为地址
+
         if not house:
             house_location == 'Unknow'
         else:
@@ -117,9 +114,6 @@ while True:
             'url':house_url
         }
         house_data.append(house_info)
-        #print(house_info)
-        #house_data.append(house_info)
-        #csv_writer.writerow([house_name, house_location, house_price, house_url])
     print('page {0} has done'.format(page))
     if page != 1 and doc.find('.page a').eq(-2).text() != '下一页':
         print('All done')
